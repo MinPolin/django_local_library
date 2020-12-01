@@ -1,0 +1,23 @@
+{% extends "index/base_generic.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-3 col-xs-5"><h1>Author List</h1></div>
+        {% if user.is_staff %}
+        <a href="{%url 'author-create'  %}  " class="btn btn-info" style="margin-top:20px ">Add New Author</a>
+        {% endif %}
+    </div>
+
+{% if author_list %}
+<ul>
+{% for auth in author_list %}
+<li>
+<a href="{{ auth.get_absolute_url }}">{{ auth.last_name }} {{ auth.first_name}}  </a>
+
+</li>
+{% endfor %}
+</ul>
+
+{% else %}
+<p>There are no authors in the library.</p>
+{% endif %}
+{% endblock %}

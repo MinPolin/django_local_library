@@ -1,0 +1,21 @@
+{% extends "index/base_generic.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-3 col-xs-5"><h1>Book List</h1></div>
+        {% if user.is_staff %}
+        <a href="{%url 'book-create'  %}  " class="btn btn-info" style="margin-top:20px ">Add New Book</a>
+        {% endif %}
+    </div>
+{% if book_list %}
+<ul>
+{% for book in book_list %}
+<li>
+<a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+({{book.author}})
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>There are no books in the library.</p>
+{% endif %}
+{% endblock %}
